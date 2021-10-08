@@ -1,0 +1,16 @@
+[
+{
+  "modid": "fishrigging",
+  "name": "FishRigging",
+  "description": "Changes fish drops",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ScribbleLP"],
+  "credits": "._.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
