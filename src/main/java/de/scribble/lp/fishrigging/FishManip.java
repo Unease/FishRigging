@@ -11,6 +11,7 @@ import com.google.common.collect.Maps;
 
 import de.scribble.lp.fishrigging.mixin.AccessorItemStack;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;
@@ -270,7 +271,7 @@ public class FishManip {
 								}
 							}
 							for (Enchantment e:enchlist) {
-								if(e.isCompatibleWith(testEnch)) {
+								if(e.canApply(testStack)) {
 									isCorrect=true;
 								}else {
 									isCorrect=false;
@@ -369,6 +370,16 @@ public class FishManip {
 			return new ItemStack(Item.getByNameOrId("fishing_rod"), 1, damage);
 		case "ink_sac":
 			return new ItemStack(Item.getByNameOrId("dye"), 10, 0);
+		case "tripwire_hook":
+			return new ItemStack(Item.getByNameOrId("tripwire_hook"));
+		case "rotten_flesh":
+			return new ItemStack(Item.getByNameOrId("rotten_flesh"));
+		case "waterlily": 
+			return new ItemStack(Blocks.WATERLILY);
+		case "name_tag":
+			return new ItemStack(Item.getByNameOrId("name_tag"));
+		case "saddle":
+			return new ItemStack(Item.getByNameOrId("saddle"));
 		case "bow":
 			return new ItemStack(Item.getByNameOrId("bow"), 1, damage);
 		case "fishing_rod_treasure":
