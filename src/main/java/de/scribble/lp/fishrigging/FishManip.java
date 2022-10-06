@@ -11,6 +11,7 @@ import com.google.common.collect.Maps;
 
 import de.scribble.lp.fishrigging.mixin.AccessorItemStack;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;
@@ -23,8 +24,6 @@ public class FishManip {
 			"leather_boots","leather","bone","water_potion","string","fishing_rod_junk","bowl","stick","ink_sac","tripwire_hook","rotten_flesh",
 			"waterlily","name_tag","saddle","bow","fishing_rod_treasure","book"));
 	private List<String> possibleDamageItemNames=new ArrayList<String>(ImmutableList.of("leather_boots","fishing_rod_junk","bow","fishing_rod_trasure"));
-	private List<String> possibleEnchantItemNames=new ArrayList<String>(ImmutableList.of("bow","fishing_rod_treasure","book"));
-	
 	public FishManip(File saveFile) {
 		fileLocation=saveFile;
 		createFile(saveFile);
@@ -101,7 +100,6 @@ public class FishManip {
 		List<String> completeFile;
 		StringBuilder output = new StringBuilder();
 		ItemStack item=null;
-		boolean abortOverwriting=false;
 		try {
 			completeFile = readFile();
 		} catch (IOException e) {
@@ -129,7 +127,6 @@ public class FishManip {
 					}else {
 						output.append(line+"\n");
 					}
-					abortOverwriting=true;
 				}
 				continue;
 			}
@@ -295,7 +292,6 @@ public class FishManip {
 		String[] split3;
 		String[] split4;
 		boolean dmg=false;
-		boolean cnt=false;
 		boolean ench=false;
 		
 		if(line.contains(";")) {
@@ -369,6 +365,16 @@ public class FishManip {
 			return new ItemStack(Item.getByNameOrId("fishing_rod"), 1, damage);
 		case "ink_sac":
 			return new ItemStack(Item.getByNameOrId("dye"), 10, 0);
+		case "tripwire_hook":
+			return new ItemStack(Item.getByNameOrId("tripwire_hook"));
+		case "rotten_flesh":
+			return new ItemStack(Item.getByNameOrId("rotten_flesh"));
+		case "waterlily": 
+			return new ItemStack(Blocks.WATERLILY);
+		case "name_tag":
+			return new ItemStack(Item.getByNameOrId("name_tag"));
+		case "saddle":
+			return new ItemStack(Item.getByNameOrId("saddle"));
 		case "bow":
 			return new ItemStack(Item.getByNameOrId("bow"), 1, damage);
 		case "fishing_rod_treasure":
