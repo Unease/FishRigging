@@ -282,7 +282,7 @@ public class FishManipOld {
 								}
 							}
 							for (Enchantment e:enchlist) {
-								if(e.isCompatibleWith(testEnch)) {
+								if(e.func_191560_c(testEnch)) {
 									isCorrect=true;
 								}else {
 									isCorrect=false;

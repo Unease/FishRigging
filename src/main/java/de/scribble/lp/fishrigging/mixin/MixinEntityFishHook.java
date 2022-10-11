@@ -47,13 +47,13 @@ public abstract class MixinEntityFishHook {
 	}
 
 	@Shadow
-	private int lureSpeed;
+	private int field_191519_ax;
 
 	@Redirect(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/MathHelper;getInt(Ljava/util/Random;II)I", ordinal = 2))
 	private int fastestFishAppearRedirect(Random rand, int min, int max) {
 		if (FishManipEvents.fishrigger.isActive()) {
-			if (lureSpeed >= 1) {
-				return lureSpeed * 20 * 5 + 1;
+			if (field_191519_ax >= 1) {
+				return field_191519_ax * 20 * 5 + 1;
 			}
 			return 100;
 		}
