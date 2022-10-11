@@ -480,7 +480,7 @@ public class FishManip {
 				for(Enchantment secondEnch : enchlist) { // Test for compatibility
 					if(firstEnch.equals(secondEnch))
 						continue;
-					if(!firstEnch.isCompatibleWith(secondEnch)) 
+					if(!firstEnch.func_191560_c(secondEnch)) 
 						return new Exception(String.format("Enchantment %s is incompatible with %s", firstEnch.getName(), secondEnch.getName()));
 				}
 			}

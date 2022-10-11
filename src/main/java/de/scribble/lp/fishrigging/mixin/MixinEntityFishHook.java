@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import de.scribble.lp.fishrigging.FishManipEvents;
 import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
 
