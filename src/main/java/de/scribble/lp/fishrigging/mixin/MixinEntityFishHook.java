@@ -40,23 +40,27 @@ public abstract class MixinEntityFishHook {
     
     @Redirect(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/MathHelper;getInt(Ljava/util/Random;II)I", ordinal = 1))
     private int fastestFishApproachRedirect(Random rand, int min, int max) {
-    		return 20;
+    	if(FishManipEvents.fishrigger.isActive()) {
+    		return 21;
+    	}else {
+    		return MathHelper.getInt(rand, min, max);
     	}
+    
+    @Shadow
+    private int lureSpeed;
     
     @Redirect(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/MathHelper;getInt(Ljava/util/Random;II)I", ordinal = 2))
     private int fastestFishAppearRedirect(Random rand, int min, int max) {
-    	
-    	if (lureSpeed == 1) {
-			return 101;
-		}
-    	
-    	if (lureSpeed == 2) {
-			return 201;
-		}
-    	
-    	if (lureSpeed == 3) {
-			return 301;
-		}
-    		return 100;
+    	if(FishManipEvents.fishrigger.isActive()) {
+    		switch(lureSpeed) {
+    		case 2:
+    			return 201;
+    		case 3:
+    			return 301;
+    		default:
+    			return 101;
+    		}
+    	}else {
+    		return MathHelper.getInt(rand, min, max);
     	}
     }
