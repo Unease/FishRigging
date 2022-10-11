@@ -18,8 +18,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -30,10 +28,6 @@ import net.minecraft.potion.PotionUtils;
 public class FishManip {
 	
 	private File fileLocation;
-	private List<String> possibleItemNames=new ArrayList<String>(ImmutableList.of("cod","salmon","clownfish","pufferfish",
-			"leather_boots","leather","bone","water_potion","string","fishing_rod_junk","bowl","stick","ink_sac","tripwire_hook","rotten_flesh",
-			"waterlily","name_tag","saddle","bow","fishing_rod_treasure","book"));
-	private List<String> possibleDamageItemNames=new ArrayList<String>(ImmutableList.of("leather_boots","fishing_rod_junk","bow","fishing_rod_trasure"));
 
 	public FishManip(File saveFile) {
 		fileLocation=saveFile;
@@ -113,9 +107,6 @@ public class FishManip {
 	 * @return The specified itemstack or a barrier item if an error occured
 	 */
 	public ItemStack getItemFromTop() {
-		List<String> completeFile;
-		StringBuilder output = new StringBuilder();
-		ItemStack item=null;
 		List<String> completeFile;	// The file to be read
 		List<String> output = new ArrayList<>();	// The lines for the output file after the file has been parsed.
 		
@@ -139,21 +130,6 @@ public class FishManip {
 				output.add(line);	// Add comments to the output
 				continue;
 			}
-			i++;
-			Map<String, String> values=splitLine(line);
-			if(i==1) {
-				if(checkIfCorrect(values)) {
-					item= convertMaptoItemStack(values);
-					addEnchantments(item, values);
-				}else {
-					item= new ItemStack(Item.getByNameOrId("barrier"));
-					item.setStackDisplayName("Something went wrong in FishRigging. Check your file");
-					if(!line.contains("Mistake in this line ->")) {
-						output.append("Mistake in this line -> "+line+"\n");
-					}else {
-						output.append(line+"\n");
-					}
-				}
 			
 			if(line.contains("Mistake in this line:")) { //If there is already an error in this line, remove the old error message
 				line=line.replaceFirst("Mistake in this line:.*->\\s*", "");
@@ -292,12 +268,6 @@ public class FishManip {
 		BOOK("book", new ItemStack(Items.ENCHANTED_BOOK), null, true, "This item has to be enchanted, Example: book;enchant:frost_walker[1]")
 		; //<-- At the end of an enum list has to be a semicolon. Putting it here so you can see it...
 		
-		String[] split1;
-		String[] split2;
-		String[] split3;
-		String[] split4;
-		boolean dmg=false;
-		boolean ench=false;
 		/**
 		 * The name that should be recognized by the parser.<br>
 		 * This is only because of the two fishing rods, one being junk and one being treasure
@@ -410,28 +380,6 @@ public class FishManip {
 			if(item.damage!=null) {
 				itemStack.setItemDamage(item.damage);
 			}
-		case "fishing_rod_junk":
-			return new ItemStack(Item.getByNameOrId("fishing_rod"), 1, damage);
-		case "ink_sac":
-			return new ItemStack(Item.getByNameOrId("dye"), 10, 0);
-		case "tripwire_hook":
-			return new ItemStack(Item.getByNameOrId("tripwire_hook"));
-		case "rotten_flesh":
-			return new ItemStack(Item.getByNameOrId("rotten_flesh"));
-		case "waterlily": 
-			return new ItemStack(Blocks.WATERLILY);
-		case "name_tag":
-			return new ItemStack(Item.getByNameOrId("name_tag"));
-		case "saddle":
-			return new ItemStack(Item.getByNameOrId("saddle"));
-		case "bow":
-			return new ItemStack(Item.getByNameOrId("bow"), 1, damage);
-		case "fishing_rod_treasure":
-			return new ItemStack(Item.getByNameOrId("fishing_rod"), 1, damage);
-		case "book":
-			return new ItemStack(Item.getByNameOrId("enchanted_book"));
-		default:
-			return new ItemStack(Item.getByNameOrId(itemname));
 			if(item.enchantments!=null) {	// Set enchantments after validation
 				EnchantmentHelper.setEnchantments(item.enchantments, itemStack);
 			}
