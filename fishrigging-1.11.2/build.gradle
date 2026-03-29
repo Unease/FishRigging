@@ -1,0 +1,10 @@
+plugins {
+	id 'fabric-loom' version "${loom_version}"
+	id "ploceus" version "${loom_version}"
+}
+
+apply from: "../common.gradle"
+
+java {
+	sourceCompatibility = targetCompatibility = 8
+}

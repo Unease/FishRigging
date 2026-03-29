@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "com.minecrafttas.fishrigging.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+	],
+	"client": [
+		"MixinEntityFishHook"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

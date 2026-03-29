@@ -1,0 +1,33 @@
+plugins {
+	id 'discombobulator' version "${discombobulator_version}"
+}
+
+discombobulator {
+
+	// List of Minecraft versions to use with Discombobulator
+	// This list has to be highest version to lowest version
+	// and is responsible for correctly enabeling the versions.
+	//
+	// The syntax is "mcversion":"pathToFolder",
+	//
+	// If your folder, where your MC version is stored is different,
+	// Use "1.21.4":"Fabric1.21.4",
+	//
+	// You don't have to stick to the 1.21.4 version scheme, you can input
+	// "25w09b" or "oneblockAtATime" here,
+	// and you can use them in the code:
+	//
+	// // # 25w09b
+	// Minecraft.getMinecraft();
+	// // # 1.21.11
+	// Minecraft.getMinecraft();
+	// // # oneblockAtATime
+	// Yay
+	//
+	//
+	versions = [
+		"1.12.2":"fishrigging-1.12.2",
+		"1.11.2":"fishrigging-1.11.2"
+	]
+	
+}

@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "fishrigging",
+	"version": "1.0.0",
+	"name": "FishRigging",
+	"description": "For use with Minecrart Non-playback TASing",
+	"authors": [
+		"Scribble", "Unease"
+	],
+	"contact": {
+		"homepage": "https://minecrafttas.com",
+		"sources": "https://github.com/MinecraftTAS/"
+	},
+
+	"license": "GPLv3",
+	"icon": "",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.minecrafttas.fishrigging.FishRigging"
+		]
+	},
+	"mixins": [
+		"fishrigging.mixin.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.11",
+		"minecraft": "1.11.2",
+		"java": ">=8"
+	}
+}
