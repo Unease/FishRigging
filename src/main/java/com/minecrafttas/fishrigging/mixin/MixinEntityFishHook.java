@@ -44,7 +44,7 @@ public class MixinEntityFishHook {
 		if (FishRigging.isTASModLoaded) {
 			return 20;
 		}
-		return original.call(rand);
+		return original.call(rand, min, max);
 	}
 	
 	@WrapOperation(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/MathHelper;getInt(Ljava/util/Random;II)I", ordinal = 2))
@@ -60,6 +60,6 @@ public class MixinEntityFishHook {
 			}
 			return 100;
 		}
-		return original.call(rand);
+		return original.call(rand, min, max);
 	}
 }
