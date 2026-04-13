@@ -9,14 +9,14 @@ import net.fabricmc.loader.api.FabricLoader;
 public class FishRigging implements ModInitializer {
 
 	public static Logger LOGGER = LogManager.getLogger("FishRigging");
-	public static boolean isTASModLoaded = FabricLoader.getInstance().isModLoaded("tasmod");
+	public static boolean isTASmodLoaded = FabricLoader.getInstance().isModLoaded("tasmod");
 	
 	@Override
 	public void onInitialize() {
 
 		LOGGER.info("Initalizing...");
 		
-		if (isTASModLoaded) {
+		if (isTASmodLoaded) {
 			LOGGER.info("TASmod detected!");
 		} else {
 			LOGGER.info("TASmod not detected!");

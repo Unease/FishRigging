@@ -25,7 +25,7 @@ public class MixinEntityFishHook {
 	
 	@WrapOperation(method = "catchingFish", at = @At(value = "INVOKE", target = "Ljava/util/Random;nextFloat()F", ordinal = 0))
 	private float redirectRaining(Random rand, Operation<Float> original) {
-		if (FishRigging.isTASModLoaded) {
+		if (FishRigging.isTASmodLoaded) {
 			return 0;
 		}
 		return original.call(rand);
@@ -33,7 +33,7 @@ public class MixinEntityFishHook {
 	
 	@WrapOperation(method = "catchingFish", at = @At(value = "INVOKE", target = "Ljava/util/Random;nextFloat()F", ordinal = 1))
 	private float redirectOpenSky(Random rand, Operation<Float> original) {
-		if (FishRigging.isTASModLoaded) {
+		if (FishRigging.isTASmodLoaded) {
 			return 1;
 		}
 		return original.call(rand);
@@ -41,7 +41,7 @@ public class MixinEntityFishHook {
 	
 	@WrapOperation(method = "catchingFish", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/MathHelper;getInt(Ljava/util/Random;II)I", ordinal = 1))
 	private int redirectMinWait(Random rand, int min, int max, Operation<Integer> original) {
-		if (FishRigging.isTASModLoaded) {
+		if (FishRigging.isTASmodLoaded) {
 			return 20;
 		}
 		return original.call(rand, min, max);
@@ -54,7 +54,7 @@ public class MixinEntityFishHook {
 		//# 1.11.2
 		int lureSpeed = this.f_16491628;
 		//# end
-		if (FishRigging.isTASModLoaded) {
+		if (FishRigging.isTASmodLoaded) {
 			if (lureSpeed >= 1) {
 				return lureSpeed * 100 + 1;
 			}
